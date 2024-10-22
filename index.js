@@ -8,30 +8,37 @@ const askNumber = entryNumber => {
     return entryNumber
 };
 // Stocker la réponse de la variable dans la variable givenNumber
-const givenNumber = askNumber();
-console.log(givenNumber);
+//let givenNumber = askNumber();
+console.log(givenNumber)
 
 // Etape 2
 // Créer une fonction didWin qui a comme paramètre givenNumber
 let targetNumber = 22
-const didWin = givenNumber => {
+const didIWin = (guessNumber) => {
+    console.log(guessNumber)
     // condition pour trouver le nombre 
-    if (givenNumber < targetNumber){
+    if (guessNumber < targetNumber){
         alert ("Plus grand!")
-        return false
-    } else if (givenNumber > targetNumber){
+    } else if (guessNumber > targetNumber){
         alert ('Plus petit!')
-        return false 
-    } else if (givenNumber === targetNumber){
+    } else {
         alert("Bravo ! Vous avez deviné le nombre")
         return true
     }
+    return false
 };
 
 // Etape 3
 // Créer une fonction gamePlay qui gère le jeu
-const gamePlay = () => {
-    // Boucle du jeu
+let boucle = false
+while (!boucle){
+    let userGuess = askNumber();
+    boucle = didIWin(userGuess)
+}
+ // Etape 4
+ // Creer une fonction qui demande au joueur 1 de deviner un nombre entre 0 et 50
+ let guessComputer = () => {
+    while (userGuess < 0 || userGuess > 50){
 
-};
-gamePlay()
+    }
+ };

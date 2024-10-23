@@ -1,25 +1,22 @@
-// Etape 1
+// Etape 1 qui se transfome en étape 4
 // Créer une fonction qui demande à l'utilisateur d'entrer un nombre
 const askNumber = entryNumber => {
-    entryNumber = prompt('Veuillez entrer un nombre', "")
-    if(isNaN(entryNumber)){
-        alert('Ceci n\'est pas un nombre, veuilez saisir un nombre')
-    }
+    entryNumber = prompt('Joueur 1 : Veuillez entrer un nombre', "")
+    while(isNaN(entryNumber) || entryNumber < 0 || entryNumber > 50){
+        alert('Nombre invalide')
+        break
+    } 
     return entryNumber
 };
-// Stocker la réponse de la variable dans la variable givenNumber
-//let givenNumber = askNumber();
-console.log(givenNumber)
-
 // Etape 2
 // Créer une fonction didWin qui a comme paramètre givenNumber
-let targetNumber = 22
-const didIWin = (guessNumber) => {
-    console.log(guessNumber)
+const didIWin = (givenNumber, targetNumber) => {
+    targetNumber = 22;
+    console.log(givenNumber)
     // condition pour trouver le nombre 
-    if (guessNumber < targetNumber){
+    if (givenNumber < targetNumber){
         alert ("Plus grand!")
-    } else if (guessNumber > targetNumber){
+    } else if (givenNumber > targetNumber){
         alert ('Plus petit!')
     } else {
         alert("Bravo ! Vous avez deviné le nombre")
@@ -27,18 +24,14 @@ const didIWin = (guessNumber) => {
     }
     return false
 };
-
 // Etape 3
 // Créer une fonction gamePlay qui gère le jeu
 let boucle = false
-while (!boucle){
-    let userGuess = askNumber();
-    boucle = didIWin(userGuess)
-}
- // Etape 4
- // Creer une fonction qui demande au joueur 1 de deviner un nombre entre 0 et 50
- let guessComputer = () => {
-    while (userGuess < 0 || userGuess > 50){
-
+const gamePlay = () => {
+    while (!boucle){
+        userGuess = askNumber();
+        boucle = didIWin(userGuess);
     }
- };
+};
+
+gamePlay();

@@ -1,3 +1,4 @@
+/*
 // Etape 1 qui se transfome en étape 4
 // Créer une fonction qui demande à l'utilisateur d'entrer un nombre
 const askNumber = (message) => {
@@ -8,6 +9,7 @@ const askNumber = (message) => {
     } 
     return Number(entryNumber)
 };
+
 // Etape 2
 // Créer une fonction didWin qui a comme paramètre givenNumber
 const didIWin = (givenNumber, targetNumber) => {
@@ -23,11 +25,90 @@ const didIWin = (givenNumber, targetNumber) => {
     }
     return false
 };
+*/
+let boucle = true;
+let guessCheck = 0;
+//let targetNumber;
+
+const displayNumber = () => {
+    const ask = document.getElementById('Essaye');
+    const inputValue = document.getElementById('number');
+    const number = Number(inputValue.value);
+
+    if (boucle && guessCheck === 0) {
+        targetNumber = number;
+        if (targetNumber < 0 || targetNumber > 50 || isNaN(targetNumber))
+            ask.textContent = `${number} n'est pas un nombre entre 0 et 50`;
+        else {
+            ask.textContent = 'Joueur 2, veuillez choisir un nombre';
+            document.getElementById('number').value = ''
+            guessCheck = 1;
+        }
+    } else if (boucle && guessCheck === 1) {
+        if (number < 0 || number > 50 || isNaN(number)) {
+            ask.textContent = `${number} n'est pas un nombre valide entre 0 et 50`
+        } else {
+            // condition de victoire
+            console.log("I am in");
+            if (number === targetNumber) {
+                document.getElementById('victoire').textContent = 'Félicitation Joueur 2, vous avez deviner le bon nombre !';
+                ask.textContent = '';
+                boucle = false;
+            } else {
+                ask.textContent = `Essaye encore ! ${number < targetNumber ? 'Plus Grand!' : 'Plus petit!'}`
+            }
+            inputValue.value = ''
+            console.log(number)
+        }
+
+    }
+}
+
+// Création de l'évènement click avec le bouton
+document.getElementById('click').addEventListener('click', displayNumber);
+document.getElementById('number').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        displayNumber()
+    }
+});
+/*
+let boucle = true;
+let guessCheck = 0;
+//let targetNumber;
+
+const displayNumber = () => {
+    const ask = document.getElementById('Essaye');
+    const inputValue = document.getElementById('number');
+    const number = Number(inputValue.value);
+
+    if (boucle && guessCheck === 0) {
+        targetNumber = number;
+        if (targetNumber < 0 || targetNumber > 50 || isNaN(targetNumber))
+            ask.textContent = `${number} n'est pas un nombre entre 0 et 50`;
+        else {
+            ask.textContent = 'Joueur 2, veuillez choisir un nombre';
+            document.getElementById('number').value = ''
+            guessCheck = 1;
+        }
+    } else if (boucle && guessCheck === 1) {
+        // condition de victoire
+        console.log("I am in");
+        if (number === targetNumber) {
+            document.getElementById('victoire').textContent = 'Félicitation Joueur 2, vous avez deviner le bon nombre !';
+            ask.textContent = '';
+            boucle = false;
+        } else {
+            ask.textContent = `Essaye encore ! ${number < targetNumber ? 'Plus Grand!' : 'Plus petit!'}`
+        }
+        inputValue.value = ''
+        console.log(number)
+    }
+/*
 // Etape 3
 // Créer une fonction gamePlay qui gère le jeu
 const gamePlay = () => {
     // nombre à trouver
-    const targetNumber = askNumber("Joueur 1, entrez un nombre entre 0 et 50 que le joueur 1 doit deviner :");
+    const targetNumber = askNumber("Joueur 1, entrez un nombre entre 0 et 50 que le joueur 2 doit deviner :");
     let boucle = false; 
     while (!boucle){
         const userGuess = askNumber("Joueur 2, entrez votre nombre pour devniner celui du joueur 1 :");
@@ -39,3 +120,4 @@ const gamePlay = () => {
 };
 // Lancement du jeu 
 gamePlay();
+*/
